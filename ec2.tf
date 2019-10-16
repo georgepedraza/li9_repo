@@ -23,5 +23,19 @@ resource "aws_instance" "managed_node" {
   tags   = {
     Name = "node${count.index+1}"
   }
+  provisioner "file" {
+    content = tls_private_key.ansible.public_key_openssh
+    destination = ".ssh/authorized_keys"
+    connection {
+      type = "ssh"
+      host = self.public_ip
+      user = var.username
+      private_key = file("workshop.pem")
+    }
+  }
+
 }
 
+resource "tls_private_key" "ansible" {
+  algorithm = "RSA"
+}
