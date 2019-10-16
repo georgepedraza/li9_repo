@@ -1,0 +1,3 @@
+tower_host: tower.demo.li9.com
+tower_username: student03
+tower_password: 0Tu*@oYDaVEE,MjgGOCK,S
